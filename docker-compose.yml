@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  redis:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: always
+
+  app:
+    image: "oven/bun"
+    command: "/bin/sh -c 'bun install && bun run --watch src/index.tsx'"
+    ports: ["3000:3000"]
+    volumes: ["./:/home/bun/app"]
+    depends_on: ["redis"]
+    environment:
+      redis_server_addr: redis
+
+  worker:
+    image: "oven/bun"
+    command: "/bin/sh -c 'bun install && bun run src/worker/articleWriterWorker.ts'"
+    volumes: ["./:/home/bun/app"]
+    depends_on: ["redis"]
+    environment:
+      redis_server_addr: redis
+
+volumes:
+  redis_data:

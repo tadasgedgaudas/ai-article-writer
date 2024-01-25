@@ -1,0 +1,28 @@
+{
+  "name": "src",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
+  },
+  "dependencies": {
+    "@elysiajs/html": "^0.7.0",
+    "@elysiajs/swagger": "^0.8.3",
+    "@kitajs/html": "^2.2.2",
+    "@kitajs/ts-html-plugin": "^1.1.1",
+    "bullmq": "^4.12.3",
+    "elysia": "latest",
+    "langchain": "^0.1.4",
+    "mongoose": "^7.6.0",
+    "prettier": "^3.0.3",
+    "replicate": "^0.25.2",
+    "tailwind": "^4.0.0",
+    "typed-html": "^3.0.1"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "module": "src/index.js"
+}
